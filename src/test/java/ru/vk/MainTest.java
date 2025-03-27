@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selenide.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import com.codeborne.selenide.Configuration;
@@ -77,7 +78,6 @@ public class MainTest {
 
     }
 
-
     @Test
     public void testChangeProfileName() {
 
@@ -86,7 +86,7 @@ public class MainTest {
         FeedPage feedPage = LoginPage.authorize();
         feedPage.open();
 
-        $x(FeedPage.ChangeSettings).click();
+        $x(OkPage.ProfilePagePath).click();
         $x(ProfilePage.SettingsxPath).click();
         $x(ProfilePage.PersonalInfoPath).click();
         $x(ProfilePage.MainInfoPath).click();
@@ -100,7 +100,43 @@ public class MainTest {
         } 
     }
 
+    @Test
+    public void testPostingRecord() throws InterruptedException {
+        FeedPage feedPage = LoginPage.authorize();
+        feedPage.open();
 
+        $x(FeedPage.PostPath).click();
+        $x(OkPage.PostRecordPath).click();
+
+        String TEXT_OF_THE_POST = "Testing the posting of a record";
+
+        $x(OkPage.EnterTextPath).setValue(TEXT_OF_THE_POST);
+        $x(OkPage.ShareRecordPath).click();
+
+
+        $x(FeedPage.ProfilePagePath).click();
+        Thread.sleep(1000);
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formattedTime = now.format(formatter);
+
+        refresh();
+
+        String actualText = $x("//div[contains(@class, 'media-text_cnt_tx')]").getText();
+        String actualTime = $x("//div[contains(@class, 'feed-info-date')]//time").getText();
+
+        if (!actualText.equals(TEXT_OF_THE_POST)) {
+            throw new IllegalStateException("Тест не пройден...");
+        }
+
+        LocalTime nowTime = LocalTime.parse(formattedTime, formatter);
+        LocalTime actualPostTime = LocalTime.parse(actualTime, formatter);
+
+        if (Math.abs(nowTime.getMinute() - actualPostTime.getMinute()) > 1 || nowTime.getHour() != actualPostTime.getHour()) {
+            throw new IllegalStateException("Время записи не совпадает.");
+        }
+    }
 
     @AfterEach
     public void closeBrowser() {
