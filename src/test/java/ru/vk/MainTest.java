@@ -1,7 +1,10 @@
 package ru.vk;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import static com.codeborne.selenide.Selenide.*;
 
 import java.time.LocalDateTime;
@@ -9,31 +12,39 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Condition.visible;
 
 import io.github.cdimascio.dotenv.Dotenv;
-
-import static com.codeborne.selenide.Condition.visible;
+import ru.vk.pages.*;
 
 public class MainTest {
 
     static {
-        Configuration.browser = "chrome";
-        Configuration.headless = false;
+        // Configuration.browser = "chrome";
+        // Configuration.headless = false;
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--user-data-dir=C:/Users/alesh/AppData/Local/Google/Chrome/User Data");
+        options.addArguments("--profile-directory=Default");
+        options.addArguments("--start-maximized"); 
+        Configuration.browserCapabilities = options;
+    }
+
+    @BeforeEach
+    public void authorize() {
+        LoginPage.authorize();
     }
 
     @Test
-    public void testToolBarOnFeedPage() throws InterruptedException {
-        
-        FeedPage feedPage = LoginPage.authorize();
-        feedPage.open();
+    public void testToolBarOnPages() throws InterruptedException {
 
         for(int i = 1; i <= 11; i++){
-            String dynamicXPath = "//*[@id='hook_Block_Navigation']/div/div/div[" + i + "]/a";
-            $x(dynamicXPath).click();
+            SelenideElement dynamicXPath = $x("//*[@id='hook_Block_Navigation']/div/div/div[" + i + "]/a");
+            dynamicXPath.click();
             //Thread.sleep(1000);
 
-            $x(feedPage.ToolBarxPath).shouldBe(visible);   
-            $x(dynamicXPath).shouldBe(visible);
+            FeedPage.ToolBarPath.shouldBe(visible);   
+            dynamicXPath.shouldBe(visible);
         }    
     }
 
@@ -42,24 +53,21 @@ public class MainTest {
 
         Dotenv dotenv = Dotenv.load();
 
-        FeedPage feedPage = LoginPage.authorize();
-        feedPage.open();
-
         //Thread.sleep(1000);
-        $x(feedPage.MessagesxPath).click();
+        FeedPage.MessagesPath.click();
         //Thread.sleep(1000); 
 
-        $x(MessagesPage.chatsSearchInputxPath).setValue(dotenv.get("FRIENDNAME"));
-        $x(MessagesPage.ChatClickxPath).click();
+        MessagesPage.chatsSearchInputPath.setValue(dotenv.get("FRIENDNAME"));
+        MessagesPage.ChatClickxPath.click();
 
         Thread.sleep(1000);
 
-        if(!($x(MessagesPage.chatTitle).isDisplayed())) {
+        if(!MessagesPage.chatTitlePath.isDisplayed()) {
             throw new IllegalStateException("Что-то пошло не так, чат не открылся.");
         }
 
-        $x(MessagesPage.chatSendMessage).setValue("Test sending message");
-        $x(MessagesPage.sendMessageButtonxPath).click();
+        MessagesPage.chatSendMessagePath.setValue("Test sending message");
+        MessagesPage.sendMessageButtonxPath.click();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         String formattedTime = now.format(formatter);
@@ -79,42 +87,38 @@ public class MainTest {
     }
 
     @Test
-    public void testChangeProfileName() {
+    public void testChangeProfileName() throws InterruptedException {
 
         Dotenv dotenv = Dotenv.load();
 
-        FeedPage feedPage = LoginPage.authorize();
-        feedPage.open();
-
-        $x(OkPage.ProfilePagePath).click();
-        $x(ProfilePage.SettingsxPath).click();
-        $x(ProfilePage.PersonalInfoPath).click();
-        $x(ProfilePage.MainInfoPath).click();
-        $x(ProfilePage.ChangeNamePath).setValue(dotenv.get("NEWNAME"));
-        $x(ProfilePage.SaveChangesPath).click();
+        OkPage.ProfilePagePath.click();
+        ProfilePage.SettingsPath.click();
+        SettingsPage.PersonalInfoPath.click();
+        SettingsPage.MainInfoPath.click();
+        SettingsPage.ChangeNamePath.setValue(dotenv.get("NEWNAME"));
+        Thread.sleep(2000);
+        SettingsPage.SaveChangesPath.click();
 
         refresh();
 
-        if (!$x(ProfilePage.UpdatedNamePath).getText().contains(dotenv.get("NEWNAME"))) {
+        if (!SettingsPage.UpdatedNamePath.getText().contains(dotenv.get("NEWNAME"))) {
             throw new IllegalStateException("Имя не изменено.");
         } 
     }
 
     @Test
     public void testPostingRecord() throws InterruptedException {
-        FeedPage feedPage = LoginPage.authorize();
-        feedPage.open();
 
-        $x(FeedPage.PostPath).click();
-        $x(OkPage.PostRecordPath).click();
+        FeedPage.PostPath.click();
+        OkPage.PostRecordPath.click();
 
         String TEXT_OF_THE_POST = "Testing the posting of a record";
 
-        $x(OkPage.EnterTextPath).setValue(TEXT_OF_THE_POST);
-        $x(OkPage.ShareRecordPath).click();
+        OkPage.EnterTextPath.setValue(TEXT_OF_THE_POST);
+        OkPage.ShareRecordPath.click();
 
 
-        $x(FeedPage.ProfilePagePath).click();
+        FeedPage.ProfilePagePath.click();
         Thread.sleep(1000);
 
         LocalDateTime now = LocalDateTime.now();
@@ -142,4 +146,5 @@ public class MainTest {
     public void closeBrowser() {
         closeWebDriver();
     }
+
 }
