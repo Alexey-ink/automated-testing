@@ -17,7 +17,7 @@ public class OkPage {
     public static final SelenideElement PostPath = $x("//button[@data-l=\"t,pf_dropdown\"]");
     public static final SelenideElement PostRecordPath = $x("//*[@data-l=\"t,feed.posting.ui.input\"]");
     public static final SelenideElement EnterTextPath = $x("//div[@role='textbox']");
-    public static final SelenideElement ShareRecordPath = $x("//button[@title='Share']");
+    public static final SelenideElement ShareRecordPath = $x("//button[@data-l='t,button.submit']");
 
     public static boolean checkToolNavigationBars() {
         return ToolBarPath.isDisplayed() && NavigationBarPath.isDisplayed();

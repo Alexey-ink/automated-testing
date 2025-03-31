@@ -1,20 +1,15 @@
 package ru.vk;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.Duration;
 
@@ -29,7 +24,7 @@ import ru.vk.pages.*;
 
 public class MessageTest extends BaseTest {
 
-    //@Disabled
+    @Disabled
     @DisplayName("Проверка отправки сообщения другу")
     @ParameterizedTest 
     @ValueSource(strings = {"hello)"})
@@ -37,12 +32,10 @@ public class MessageTest extends BaseTest {
 
         Dotenv dotenv = Dotenv.load();
 
-        FeedPage.MessagesPath.click(); 
+        FeedPage.MessagesPath.click();
 
         MessagesPage.chatsSearchInputPath.setValue(dotenv.get("FRIENDNAME"));
         MessagesPage.ChatClickxPath.click();
-
-        Thread.sleep(1000);
 
         assertAll(
         () -> assertTrue(MessagesPage.chatTitlePath.isDisplayed(), 
