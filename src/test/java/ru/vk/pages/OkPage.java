@@ -3,6 +3,8 @@ package ru.vk.pages;
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 
+// Страница с NаvigationBar слева и ToolBar сверху. 
+// Большинство страниц будут наследоваться от этой страницы.
 public class OkPage {
 
     public static final SelenideElement ToolBarPath = $x("//*[@data-l=\"t,navigationToolbar\"]");

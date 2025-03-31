@@ -9,4 +9,9 @@ public class MessagesPage {
     public static final SelenideElement chatTitlePath = $x("//*[@data-tsid='chat_main']");
     public static final SelenideElement sendMessageButtonxPath = $x("//*[@data-l='t,sendButton']");
     public static final SelenideElement ChatClickxPath = $x("//*[@data-tsid='chat']");
+    public static final SelenideElement waitMsgIconPath = $x("//*[@class='wait-okmsg']");
+    public static final SelenideElement timeMsgPath = $x("//*[@class='time-okmsg js-nocopy']");
+
+
+    
 }
