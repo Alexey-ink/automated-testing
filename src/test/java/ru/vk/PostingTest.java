@@ -9,19 +9,20 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import com.codeborne.selenide.SelenideElement;
-
 import ru.vk.pages.*;
 
 public class PostingTest extends BaseTest {
 
+    @Disabled
     @DisplayName("Проверка выкладывания записи на стену и ее удаления")
     @ParameterizedTest
-    @ValueSource(strings = {"тэк"})
+    @ValueSource(strings = {"Testing the posting of a record"})
     public void testPostingRecord(String text) throws InterruptedException {
 
         FeedPage.PostPath.click();

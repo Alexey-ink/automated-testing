@@ -11,6 +11,7 @@ public class OkPage {
     public static final SelenideElement NavigationBarPath = $x("//*[@id='hook_Block_AsideColumn']");
 
     public static final SelenideElement MessagesPath = $x("//button[@id=\"msg_toolbar_button\"]");
+    public static final SelenideElement VideosPath = $x("//a[contains(@class, 'video')]");
     public static final SelenideElement ProfilePagePath = $x("//a[@data-l=\"t,userPage\"]");
 
     // Posting record xPaths
