@@ -1,27 +1,19 @@
 package ru.vk.pages;
 
 import com.codeborne.selenide.SelenideElement;
+
+import ru.vk.pages.components.*;
+
 import static com.codeborne.selenide.Selenide.$x;
 
-// Страница с NаvigationBar слева и ToolBar сверху. 
 // Большинство страниц будут наследоваться от этой страницы.
 public class OkPage {
 
-    public static final SelenideElement ToolBarPath = $x("//*[@data-l=\"t,navigationToolbar\"]");
-    public static final SelenideElement NavigationBarPath = $x("//*[@id='hook_Block_AsideColumn']");
-
-    public static final SelenideElement MessagesPath = $x("//button[@id=\"msg_toolbar_button\"]");
-    public static final SelenideElement VideosPath = $x("//a[contains(@class, 'video')]");
-    public static final SelenideElement ProfilePagePath = $x("//a[@data-l=\"t,userPage\"]");
-
-    // Posting record xPaths
-    public static final SelenideElement PostPath = $x("//button[@data-l=\"t,pf_dropdown\"]");
-    public static final SelenideElement PostRecordPath = $x("//*[@data-l=\"t,feed.posting.ui.input\"]");
-    public static final SelenideElement EnterTextPath = $x("//div[@role='textbox']");
-    public static final SelenideElement ShareRecordPath = $x("//button[@data-l='t,button.submit']");
+    protected static Header header;
+    protected static SideBar sideBar;
 
     public static boolean checkToolNavigationBars() {
-        return ToolBarPath.isDisplayed() && NavigationBarPath.isDisplayed();
+        return Header.isDisplayed() && SideBar.isDisplayed();
     }
                                         
 }

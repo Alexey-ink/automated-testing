@@ -1,4 +1,4 @@
-package ru.vk;
+package ru.vk.tests;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
@@ -8,15 +8,25 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import com.codeborne.selenide.Configuration;
 
+import static com.codeborne.selenide.Selenide.open;
+
 import ru.vk.pages.LoginPage;
+import ru.vk.pages.FeedPage;
 
 public abstract class BaseTest {
+
+    private String login = "technopol55";
+    private String password = "technopolisPassword";
+    
+    private static final String CHROME_USER_DATA_DIR = "C:/Users/alesh/AppData/Local/Google/Chrome/User Data";
+
+    public static final String loginURL = "https://ok.ru/";
 
     static {
         // Configuration.browser = "chrome";
         // Configuration.headless = false;
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--user-data-dir=C:/Users/alesh/AppData/Local/Google/Chrome/User Data");
+        options.addArguments("--user-data-dir=" + CHROME_USER_DATA_DIR);
         options.addArguments("--profile-directory=Default");
         options.addArguments("--start-maximized"); 
         Configuration.browserCapabilities = options;
@@ -24,7 +34,10 @@ public abstract class BaseTest {
 
     @BeforeEach
     public void authorize() {
-        LoginPage.authorize();
+        open(loginURL);
+
+        LoginPage loginPage = new LoginPage();
+        loginPage.authorize(login, password);
     }
     
     @AfterEach
