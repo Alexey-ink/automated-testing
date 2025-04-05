@@ -13,23 +13,23 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class VideoPage extends OkPage {
 
-    public static final SelenideElement videoSearchPath = $x("//input[@type='search']");
-    public static final SelenideElement videoSearchResult = $x("//div[contains(@class, 'video-search-result')]");
-    public static final SelenideElement searchButton = $x("//button[contains(@data-l, 'searchCtx')]");
-    
-    public static final SelenideElement searchIcon = $x("//span[contains(@class, 'global-search')]");
-    public static final SelenideElement searchFilters = $x("//div[contains(@class, 'video-search-filters')]");
-    public static final ElementsCollection searchResultsItems = $$x("//div[@data-logger='SimpleLogger']");
+    private static final SelenideElement videoSearchPath = $x("//input[@type='search']");
+    private static final SelenideElement videoSearchResult = $x("//div[contains(@class, 'video-search-result')]");
+    private static final SelenideElement searchButton = $x("//button[contains(@data-l, 'searchCtx')]");
 
-    public static final SelenideElement videoPlay = $x("//div[@id='VideoAutoplayPlayerE']");
-    public static final SelenideElement videoFrame = $x("//div[@id='vp_w']");
+    private static final SelenideElement searchIcon = $x("//span[contains(@class, 'global-search')]");
+    private static final SelenideElement searchFilters = $x("//div[contains(@class, 'video-search-filters')]");
+    private static final ElementsCollection searchResultsItems = $$x("//div[@data-logger='SimpleLogger']");
 
-    public static final SelenideElement playIcon =
+    private static final SelenideElement videoPlay = $x("//div[@id='VideoAutoplayPlayerE']");
+    private static final SelenideElement videoFrame = $x("//div[@id='vp_w']");
+
+    private static final SelenideElement playIcon =
             $(shadowCss("svg[data-testid='play-icon']", ".shadow-root-container"));
-    public static final SelenideElement pauseIcon =
+    private static final SelenideElement pauseIcon =
             $(shadowCss("svg[data-testid='pause-icon']", ".shadow-root-container"));
 
-    public static final SelenideElement slider = $(shadowCss("div[role='slider']", ".shadow-root-container"));
+    private static final SelenideElement slider = $(shadowCss("div[role='slider']", ".shadow-root-container"));
 
     public VideoPage videoSearchClick() {
         this.videoSearchPath.click();
@@ -37,7 +37,10 @@ public class VideoPage extends OkPage {
     }
 
     public VideoPage setSearchValue(String searchValue) {
-        videoSearchPath.setValue("Как приручить дракона");
+
+        String searchQuery = "Как приручить дракона";
+
+        videoSearchPath.setValue(searchQuery);
         sleep(500);
         return this;
     }
@@ -103,10 +106,4 @@ public class VideoPage extends OkPage {
         sleep(1000);
         return this;
     }
-
-
-
-
-
-
 }

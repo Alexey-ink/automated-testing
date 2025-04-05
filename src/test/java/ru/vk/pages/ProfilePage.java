@@ -17,13 +17,16 @@ import com.codeborne.selenide.ElementsCollection;
 
 public class ProfilePage extends OkPage {
 
-    public static final SelenideElement settingsPath = $x("//*[contains(@data-l, 'settings')]/a");
-    public static final ElementsCollection postsPath = $$x("//div[@class='feed-w']");
+    private static final SelenideElement settingsPath = $x("//*[contains(@data-l, 'settings')]/a");
+    private static final ElementsCollection postsPath = $$x("//div[@class='feed-w']");
 
-    public static final String pageLanguage = $("html").attr("lang");
+    private static final String pageLanguage = $("html").attr("lang");
 
     private final By feedAction = By.xpath(".//div[@class='feed-action']");
     private final By deleteConfirm = By.xpath(".//*[contains(@class, 'form-actions_yes')]");
+
+    private final By deleteRecordRUPath = By.xpath(".//*[text()='Удалить заметку']");
+    private final By deleteRecordENPath = By.xpath(".//*[text()='Delete post']");
 
     public ProfilePage() {
         checkProfilePage();
@@ -43,10 +46,10 @@ public class ProfilePage extends OkPage {
         actions().moveToElement(lastPost.$(feedAction)).perform();
         
         if(ProfilePage.pageLanguage.equals(RU)) {
-            lastPost.$x(".//*[text()='Удалить заметку']").click();
+            lastPost.$(deleteRecordRUPath).click();
         }
         else if(ProfilePage.pageLanguage.equals(EN)) {
-            lastPost.$x(".//*[text()='Delete post']").click();
+            lastPost.$(deleteRecordENPath).click();
         }
         else {
             throw new IllegalStateException("Неизвестный язык страницы: " + ProfilePage.pageLanguage);

@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import java.time.Duration;
 
 import com.codeborne.selenide.ElementsCollection;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
@@ -16,15 +17,16 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class MessagesPage {
 
-    public static final SelenideElement conversationListPath = $x("//*[@data-tsid='conversation_list']");
+    private static final SelenideElement conversationListPath = $x("//*[@data-tsid='conversation_list']");
 
-    public static final SelenideElement chatsSearchInputPath = $x("//*[@data-tsid='chat-search-input']");
+    private static final SelenideElement chatsSearchInputPath = $x("//*[@data-tsid='chat-search-input']");
     public static final SelenideElement chatSendMessagePath = $x("//*[@data-tsid='write_msg_input-input']");
     public static final SelenideElement chatTitlePath = $x("//*[@data-tsid='chat_main']");
-    public static final SelenideElement sendMessageButtonxPath = $x("//*[@data-l='t,sendButton']");
-    public static final SelenideElement chatClickPath = $x("//*[@data-tsid='chat']");
-    public static final SelenideElement waitMsgIconPath = $x("//*[@class='wait-okmsg']");
-    public static final SelenideElement timeMsgPath = $x("//*[@class='time-okmsg js-nocopy']");
+    private static final SelenideElement sendMessageButtonxPath = $x("//*[@data-l='t,sendButton']");
+    private static final SelenideElement chatClickPath = $x("//*[@data-tsid='chat']");
+    private static final SelenideElement timeMsgPath = $x("//*[@class='time-okmsg js-nocopy']");
+
+    private final By waitMsgIconPath = By.xpath(".//*[@class='wait-okmsg']");
 
     MessagesPage() {
         checkPage();
@@ -61,7 +63,7 @@ public class MessagesPage {
 
     public void waitMessageIcon(String message) throws ElementNotFound {
         SelenideElement lastMessage = this.getLastMessage(message);
-        SelenideElement messageWaitIcon = lastMessage.parent().parent().$x(".//*[@class='wait-okmsg']");
+        SelenideElement messageWaitIcon = lastMessage.parent().parent().$(waitMsgIconPath);
         messageWaitIcon.should(appear, Duration.ofSeconds(2));
         messageWaitIcon.should(disappear, Duration.ofSeconds(5));
     }
@@ -79,7 +81,7 @@ public class MessagesPage {
 
     public void waitIconShouldNotVisible(String message) {
         SelenideElement lastMessage = this.getLastMessage(message);
-        SelenideElement messageWaitIcon = lastMessage.parent().parent().$x(".//*[@class='wait-okmsg']");
+        SelenideElement messageWaitIcon = lastMessage.parent().parent().$(waitMsgIconPath);
         messageWaitIcon.shouldNotBe(visible);
     }
 }

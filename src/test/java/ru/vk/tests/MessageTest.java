@@ -24,13 +24,14 @@ import ru.vk.pages.*;
 
 public class MessageTest extends BaseTest {
 
-    @Disabled
+    //@Disabled
     @DisplayName("Проверка отправки сообщения другу")
     @ParameterizedTest 
     @ValueSource(strings = {"hello)", "my friend"})
     public void testSendingMessages(String message) throws InterruptedException {
 
         String friendName = "про100 Игорь";
+        final String datePattern = "HH:mm";
 
         MessagesPage messagesPage = new FeedPage()
             .messagesClick()
@@ -45,7 +46,7 @@ public class MessageTest extends BaseTest {
         MessagesPage newMessagesPage = messagesPage.setMessage(message).sendMessage();
 
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
         String currentTime = now.format(formatter);
         String timePlus1 = now.plusMinutes(1).format(formatter);
 

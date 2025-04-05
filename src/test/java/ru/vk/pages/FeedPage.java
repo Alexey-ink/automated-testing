@@ -6,8 +6,8 @@ import ru.vk.pages.components.PostRecord;
 
 public class FeedPage extends OkPage {
 
-    public static final SelenideElement momentsPath = $x("//*[@data-l='t,to_moments']");
-    public static final SelenideElement hobbiesPath = $x("//*[@data-l='t,to_hobbies']");
+    private static final SelenideElement momentsPath = $x("//*[@data-l='t,to_moments']");
+    private static final SelenideElement hobbiesPath = $x("//*[@data-l='t,to_hobbies']");
 
 
     public static boolean isLoaded() {

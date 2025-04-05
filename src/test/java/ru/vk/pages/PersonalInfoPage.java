@@ -6,10 +6,10 @@ import com.codeborne.selenide.SelenideElement;
 
 public class PersonalInfoPage extends OkPage {
 
-    public static final SelenideElement mainInfoPath = $x("//button[contains(@class, 'element__vm33b')]");
-    public static final SelenideElement changeNamePath = $x("//*[@class='text-input-wrapper__v631b']/input");   
-    public static final SelenideElement saveChangesPath = $x("//*[@class= 'footer__nx4nw']/button[1]/span");
-    public static final SelenideElement updatedNamePath = $x("//span[contains(@class, 'tip__v631b')]");
+    private static final SelenideElement mainInfoPath = $x("//button[contains(@class, 'element__vm33b')]");
+    private static final SelenideElement changeNamePath = $x("//*[@class='text-input-wrapper__v631b']/input");
+    private static final SelenideElement saveChangesPath = $x("//*[@class= 'footer__nx4nw']/button[1]/span");
+    private static final SelenideElement updatedNamePath = $x("//span[contains(@class, 'tip__v631b')]");
     
 
     public PersonalInfoPage mainInfoClick() {

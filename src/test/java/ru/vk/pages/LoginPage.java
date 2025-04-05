@@ -5,9 +5,9 @@ import com.codeborne.selenide.SelenideElement;
 
 public class LoginPage{
 
-    public static final SelenideElement loginxPath = $x("//*[@id=\"field_email\"]");
-    public static final SelenideElement passwordxPath = $x("//*[@id=\"field_password\"]");
-    public static final SelenideElement authorizeButton = $x("input[data-l='t,sign_in']");
+    private static final SelenideElement loginxPath = $x("//*[@id=\"field_email\"]");
+    private static final SelenideElement passwordxPath = $x("//*[@id=\"field_password\"]");
+    private static final SelenideElement authorizeButton = $x("input[data-l='t,sign_in']");
 
     
     public FeedPage authorize(String login, String password) {
