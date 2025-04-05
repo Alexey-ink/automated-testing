@@ -11,13 +11,12 @@ import com.codeborne.selenide.Configuration;
 import static com.codeborne.selenide.Selenide.open;
 
 import ru.vk.pages.LoginPage;
-import ru.vk.pages.FeedPage;
 
 public abstract class BaseTest {
 
-    private String login = "technopol55";
-    private String password = "technopolisPassword";
-    
+    private final String login = "technopol55";
+    private final String password = "technopolisPassword";
+
     private static final String CHROME_USER_DATA_DIR = "C:/Users/alesh/AppData/Local/Google/Chrome/User Data";
 
     public static final String loginURL = "https://ok.ru/";

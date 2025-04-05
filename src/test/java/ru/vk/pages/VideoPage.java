@@ -37,10 +37,7 @@ public class VideoPage extends OkPage {
     }
 
     public VideoPage setSearchValue(String searchValue) {
-
-        String searchQuery = "Как приручить дракона";
-
-        videoSearchPath.setValue(searchQuery);
+        videoSearchPath.setValue(searchValue);
         sleep(500);
         return this;
     }

@@ -1,25 +1,16 @@
 package ru.vk.tests;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.Duration;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementNotFound;
-
-import static com.codeborne.selenide.Condition.*;
-
-import io.github.cdimascio.dotenv.Dotenv;
 import ru.vk.pages.*;
 
 public class MessageTest extends BaseTest {
@@ -28,7 +19,7 @@ public class MessageTest extends BaseTest {
     @DisplayName("Проверка отправки сообщения другу")
     @ParameterizedTest 
     @ValueSource(strings = {"hello)", "my friend"})
-    public void testSendingMessages(String message) throws InterruptedException {
+    public void testSendingMessages(String message) {
 
         String friendName = "про100 Игорь";
         final String datePattern = "HH:mm";

@@ -1,18 +1,15 @@
 package ru.vk.tests;
 
 import static com.codeborne.selenide.Selenide.refresh;
-import static com.codeborne.selenide.Selenide.sleep;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.codeborne.selenide.SelenideElement;
 import ru.vk.pages.*;
 
 public class PostingTest extends BaseTest {
@@ -21,7 +18,7 @@ public class PostingTest extends BaseTest {
     @DisplayName("Проверка выкладывания записи на стену и ее удаления")
     @ParameterizedTest
     @ValueSource(strings = {"Testing the posting of a record", "Тестирование"})
-    public void testPostingRecord(String text) throws InterruptedException {
+    public void testPostingRecord(String text) {
 
         FeedPage feedPage = new FeedPage().postClick()
                 .recordClick()
