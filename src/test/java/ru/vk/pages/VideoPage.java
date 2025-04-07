@@ -13,23 +13,19 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class VideoPage extends OkPage {
 
-    private static final SelenideElement videoSearchPath = $x("//input[@type='search']");
-    private static final SelenideElement videoSearchResult = $x("//div[contains(@class, 'video-search-result')]");
-    private static final SelenideElement searchButton = $x("//button[contains(@data-l, 'searchCtx')]");
+    private final SelenideElement videoSearchPath = $x("//input[@type='search']");
+    private final SelenideElement videoSearchResult = $x("//div[contains(@class, 'video-search-result')]");
+    private final SelenideElement searchButton = $x("//button[contains(@data-l, 'searchCtx')]");
 
-    private static final SelenideElement searchIcon = $x("//span[contains(@class, 'global-search')]");
-    private static final SelenideElement searchFilters = $x("//div[contains(@class, 'video-search-filters')]");
-    private static final ElementsCollection searchResultsItems = $$x("//div[@data-logger='SimpleLogger']");
+    private final ElementsCollection searchResultsItems = $$x("//div[@data-logger='SimpleLogger']");
+    private final SelenideElement videoPlay = $x("//div[@id='VideoAutoplayPlayerE']");
 
-    private static final SelenideElement videoPlay = $x("//div[@id='VideoAutoplayPlayerE']");
-    private static final SelenideElement videoFrame = $x("//div[@id='vp_w']");
-
-    private static final SelenideElement playIcon =
+    private final SelenideElement playIcon =
             $(shadowCss("svg[data-testid='play-icon']", ".shadow-root-container"));
-    private static final SelenideElement pauseIcon =
+    private final SelenideElement pauseIcon =
             $(shadowCss("svg[data-testid='pause-icon']", ".shadow-root-container"));
 
-    private static final SelenideElement slider = $(shadowCss("div[role='slider']", ".shadow-root-container"));
+    private final SelenideElement slider = $(shadowCss("div[role='slider']", ".shadow-root-container"));
 
     public VideoPage videoSearchClick() {
         this.videoSearchPath.click();
@@ -98,8 +94,8 @@ public class VideoPage extends OkPage {
     }
 
     public VideoPage videoPauseClick() {
-        VideoPage.videoPlay.click();
-        VideoPage.playIcon.shouldBe(hidden);
+        this.videoPlay.click();
+        this.playIcon.shouldBe(hidden);
         sleep(1000);
         return this;
     }

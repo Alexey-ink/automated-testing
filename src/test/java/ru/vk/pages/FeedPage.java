@@ -1,21 +1,23 @@
 package ru.vk.pages;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 import com.codeborne.selenide.SelenideElement;
 import ru.vk.pages.components.PostRecord;
 
 public class FeedPage extends OkPage {
 
-    private static final SelenideElement momentsPath = $x("//*[@data-l='t,to_moments']");
-    private static final SelenideElement hobbiesPath = $x("//*[@data-l='t,to_hobbies']");
+    private final SelenideElement momentsPath = $x("//*[@data-l='t,to_moments']");
+    private final SelenideElement hobbiesPath = $x("//*[@data-l='t,to_hobbies']");
 
-
-    public static boolean isLoaded() {
-        return hobbiesPath.isDisplayed() 
-                && momentsPath.isDisplayed()
-                && checkToolNavigationBars();
+    public FeedPage() {
+        checkFeedPage();
     }
 
+    public void checkFeedPage() {
+        momentsPath.shouldBe(visible.because("Moments path is not visible"));
+        hobbiesPath.shouldBe(visible.because("Hobbies path is not visible"));
+    }
 
     public PostRecord postClick() {
         this.sideBar.postPath.click();

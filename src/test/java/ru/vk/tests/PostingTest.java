@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -15,6 +16,7 @@ import ru.vk.pages.*;
 public class PostingTest extends BaseTest {
 
     //@Disabled
+    @Tag("post")
     @DisplayName("Проверка выкладывания записи на стену и ее удаления")
     @ParameterizedTest
     @ValueSource(strings = {"Testing the posting of a record", "Тестирование"})

@@ -7,13 +7,13 @@ import com.codeborne.selenide.SelenideElement;
 
 public class Header {
     
-    public static final SelenideElement messagesPath = $x("//*[@data-l='t,messages']");
-    public static final SelenideElement discussionsPath = $x("//*[@data-l='t,discussions']");
-    public static final SelenideElement notificationsPath = $x("//*[@data-l='t,notifications']");
-    public static final SelenideElement guestsPath = $x("//*[@data-l='t,guests']");
-    public static final SelenideElement marksPath = $x("//*[@data-l='t,marks']");
-    public static final SelenideElement videoPath = $x("//*[@data-l='t,video']");
-    public static final SelenideElement musicPath = $x("//*[@data-l='t,music']");
+    public final SelenideElement messagesPath = $x("//*[@data-l='t,messages']");
+    public final SelenideElement discussionsPath = $x("//*[@data-l='t,discussions']");
+    public final SelenideElement notificationsPath = $x("//*[@data-l='t,notifications']");
+    public final SelenideElement guestsPath = $x("//*[@data-l='t,guests']");
+    public final SelenideElement marksPath = $x("//*[@data-l='t,marks']");
+    public final SelenideElement videoPath = $x("//*[@data-l='t,video']");
+    public final SelenideElement musicPath = $x("//*[@data-l='t,music']");
 
     public Header() {
         checkToolbar();
@@ -29,7 +29,7 @@ public class Header {
         musicPath.shouldBe(visible.because("Music path is not visible"));
     }
 
-    public static boolean isDisplayed() {
+    public boolean isDisplayed() {
         return messagesPath.isDisplayed() 
                 && discussionsPath.isDisplayed()
                 && notificationsPath.isDisplayed()

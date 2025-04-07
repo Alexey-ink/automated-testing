@@ -17,14 +17,13 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class MessagesPage {
 
-    private static final SelenideElement conversationListPath = $x("//*[@data-tsid='conversation_list']");
+    private final SelenideElement conversationListPath = $x("//*[@data-tsid='conversation_list']");
 
-    private static final SelenideElement chatsSearchInputPath = $x("//*[@data-tsid='chat-search-input']");
-    public static final SelenideElement chatSendMessagePath = $x("//*[@data-tsid='write_msg_input-input']");
-    public static final SelenideElement chatTitlePath = $x("//*[@data-tsid='chat_main']");
-    private static final SelenideElement sendMessageButtonxPath = $x("//*[@data-l='t,sendButton']");
-    private static final SelenideElement chatClickPath = $x("//*[@data-tsid='chat']");
-    private static final SelenideElement timeMsgPath = $x("//*[@class='time-okmsg js-nocopy']");
+    private final SelenideElement chatsSearchInputPath = $x("//*[@data-tsid='chat-search-input']");
+    private final SelenideElement chatSendMessagePath = $x("//*[@data-tsid='write_msg_input-input']");
+    private final SelenideElement chatTitlePath = $x("//*[@data-tsid='chat_main']");
+    private final SelenideElement sendMessageButtonxPath = $x("//*[@data-l='t,sendButton']");
+    private final SelenideElement chatClickPath = $x("//*[@data-tsid='chat']");
 
     private final By waitMsgIconPath = By.xpath(".//*[@class='wait-okmsg']");
 
@@ -83,5 +82,12 @@ public class MessagesPage {
         SelenideElement lastMessage = this.getLastMessage(message);
         SelenideElement messageWaitIcon = lastMessage.parent().parent().$(waitMsgIconPath);
         messageWaitIcon.shouldNotBe(visible);
+    }
+
+    public void verifyChatTitlePath() {
+        chatTitlePath.shouldBe(visible.because("Чат не открылся"));
+    }
+    public void verifyChatSendMessagePath() {
+        chatSendMessagePath.shouldBe(visible.because("Поле ввода сообщения не отображается"));
     }
 }

@@ -1,6 +1,7 @@
 package ru.vk.tests;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -16,6 +17,7 @@ import ru.vk.pages.*;
 public class MessageTest extends BaseTest {
 
     //@Disabled
+    @Tag("message")
     @DisplayName("Проверка отправки сообщения другу")
     @ParameterizedTest 
     @ValueSource(strings = {"hello)", "my friend"})
@@ -29,9 +31,10 @@ public class MessageTest extends BaseTest {
             .setFriendToSearch(friendName)
             .chatClick();
 
+
         assertAll(
-        () -> assertTrue(messagesPage.chatTitlePath.isDisplayed(), "Чат не открылся"),
-        () -> assertTrue(MessagesPage.chatSendMessagePath.isDisplayed(),"Поле ввода сообщения не отображается")
+            () -> messagesPage.verifyChatTitlePath(),
+            () -> messagesPage.verifyChatSendMessagePath()
         );
 
         MessagesPage newMessagesPage = messagesPage.setMessage(message).sendMessage();

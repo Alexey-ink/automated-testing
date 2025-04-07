@@ -10,9 +10,9 @@ import ru.vk.pages.FeedPage;
 public class PostRecord {
     // Posting record xPaths
 
-    public static final SelenideElement postRecordPath = $x("//*[@data-l=\"t,feed.posting.ui.input\"]");
-    public static final SelenideElement enterTextPath = $x("//div[@role='textbox']");
-    public static final SelenideElement shareRecordPath = $x("//button[@data-l='t,button.submit']");
+    public final SelenideElement postRecordPath = $x("//*[@data-l=\"t,feed.posting.ui.input\"]");
+    public final SelenideElement enterTextPath = $x("//div[@role='textbox']");
+    public final SelenideElement shareRecordPath = $x("//button[@data-l='t,button.submit']");
 
     public PostRecord() {
         checkPostRecord();

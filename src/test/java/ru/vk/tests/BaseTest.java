@@ -19,7 +19,7 @@ public abstract class BaseTest {
 
     private static final String CHROME_USER_DATA_DIR = "C:/Users/alesh/AppData/Local/Google/Chrome/User Data";
 
-    public static final String loginURL = "https://ok.ru/";
+    public final String loginURL = "https://ok.ru/";
 
     static {
         // Configuration.browser = "chrome";

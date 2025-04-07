@@ -6,16 +6,16 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Condition.visible;
 
 public class SideBar {
-    public static final SelenideElement profilePath = $x("//*[@data-l='t,userPage']");
-    public static final SelenideElement feedPath = $x("//*[@data-l='t,userMain']");
-    public static final SelenideElement hobbyPath = $x("//*[@data-l='t,hobby']");
-    public static final SelenideElement friendsPath = $x("//*[@data-l='t,userFriend']");
-    public static final SelenideElement photosPath = $x("//*[@data-l='t,userPhotos']");
-    public static final SelenideElement groupsPath = $x("//*[@data-l='t,userAltGroup']");
-    public static final SelenideElement gamesPath = $x("//*[@data-l='t,appsShowcaseHD']");
-    public static final SelenideElement giftsPath = $x("//*[@data-l='t,giftsFront']");
+    public final SelenideElement profilePath = $x("//*[@data-l='t,userPage']");
+    public final SelenideElement feedPath = $x("//*[@data-l='t,userMain']");
+    public final SelenideElement hobbyPath = $x("//*[@data-l='t,hobby']");
+    public final SelenideElement friendsPath = $x("//*[@data-l='t,userFriend']");
+    public final SelenideElement photosPath = $x("//*[@data-l='t,userPhotos']");
+    public final SelenideElement groupsPath = $x("//*[@data-l='t,userAltGroup']");
+    public final SelenideElement gamesPath = $x("//*[@data-l='t,appsShowcaseHD']");
+    public final SelenideElement giftsPath = $x("//*[@data-l='t,giftsFront']");
 
-    public static final SelenideElement postPath = $x("//button[@data-l=\"t,pf_dropdown\"]");
+    public final SelenideElement postPath = $x("//button[@data-l=\"t,pf_dropdown\"]");
  
     public SideBar() {
         checkSideBar();
@@ -33,7 +33,7 @@ public class SideBar {
         postPath.shouldBe(visible.because("Post path is not visible"));
     }
 
-    public static boolean isDisplayed() {
+    public boolean isDisplayed() {
         return isElementDisplayed(profilePath, "Profile path")
                 && isElementDisplayed(feedPath, "Feed path")
                 && isElementDisplayed(hobbyPath, "Hobby path")
@@ -45,7 +45,7 @@ public class SideBar {
                 && isElementDisplayed(postPath, "Post path");
     }
 
-    private static boolean isElementDisplayed(SelenideElement element, String elementName) {
+    private boolean isElementDisplayed(SelenideElement element, String elementName) {
         if (!element.isDisplayed()) {
             throw new AssertionError(elementName + " is not displayed!");
         }

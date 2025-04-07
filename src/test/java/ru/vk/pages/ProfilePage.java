@@ -3,7 +3,6 @@ package ru.vk.pages;
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.actions;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.openqa.selenium.By;
 
@@ -17,10 +16,10 @@ import com.codeborne.selenide.ElementsCollection;
 
 public class ProfilePage extends OkPage {
 
-    private static final SelenideElement settingsPath = $x("//*[contains(@data-l, 'settings')]/a");
-    private static final ElementsCollection postsPath = $$x("//div[@class='feed-w']");
+    private final SelenideElement settingsPath = $x("//*[contains(@data-l, 'settings')]/a");
+    private final ElementsCollection postsPath = $$x("//div[@class='feed-w']");
 
-    private static final String pageLanguage = $("html").attr("lang");
+    private final String pageLanguage = $("html").attr("lang");
 
     private final By feedAction = By.xpath(".//div[@class='feed-action']");
     private final By deleteConfirm = By.xpath(".//*[contains(@class, 'form-actions_yes')]");
@@ -41,18 +40,18 @@ public class ProfilePage extends OkPage {
         final String RU = "ru";
         final String EN = "en";
 
-        SelenideElement lastPost = ProfilePage.postsPath.first();
+        SelenideElement lastPost = this.postsPath.first();
 
         actions().moveToElement(lastPost.$(feedAction)).perform();
         
-        if(ProfilePage.pageLanguage.equals(RU)) {
+        if(this.pageLanguage.equals(RU)) {
             lastPost.$(deleteRecordRUPath).click();
         }
-        else if(ProfilePage.pageLanguage.equals(EN)) {
+        else if(this.pageLanguage.equals(EN)) {
             lastPost.$(deleteRecordENPath).click();
         }
         else {
-            throw new IllegalStateException("Неизвестный язык страницы: " + ProfilePage.pageLanguage);
+            throw new IllegalStateException("Неизвестный язык страницы: " + this.pageLanguage);
         }
 
         lastPost.$(deleteConfirm).click();
@@ -60,7 +59,7 @@ public class ProfilePage extends OkPage {
     }
 
     public void verifyPostIsDeleted(String text, String currentTime, String timePlus1) {
-        SelenideElement lastPost = ProfilePage.postsPath.first();
+        SelenideElement lastPost = this.postsPath.first();
 
         lastPost.$x(".//*[contains(text(), '" + text + "') and .//time[text()='" + currentTime + "' or text()='" + timePlus1 + "']]")
         .shouldNot(exist);
@@ -68,12 +67,12 @@ public class ProfilePage extends OkPage {
 
 
     public void verifyPostIsPublished(String text) {
-        SelenideElement lastPost = ProfilePage.postsPath.first();
+        SelenideElement lastPost = this.postsPath.first();
         lastPost.$x(".//*[text()='" + text + "']").shouldBe(visible);
     }
 
     public void verifyTimePublishedPost(String currentTime, String timePlus1) {
-        SelenideElement lastPost = ProfilePage.postsPath.first();
+        SelenideElement lastPost = this.postsPath.first();
         lastPost.$x(".//time[text()='" + currentTime + "' or text()='" + timePlus1 + "']").shouldBe(visible);
     }
 
