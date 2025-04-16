@@ -2,7 +2,7 @@ package ru.vk.pages;
 import ru.vk.pages.components.*;
 
 // Большинство страниц будут наследоваться от этой страницы.
-public class OkPage {
+public abstract class OkPage {
 
     protected Header header;
     protected SideBar sideBar;
@@ -12,8 +12,10 @@ public class OkPage {
         this.sideBar = new SideBar();
     }
 
+    abstract void checkPage();
+
     public boolean checkToolNavigationBars() {
         return header.isDisplayed() && sideBar.isDisplayed();
     }
-                                        
+
 }

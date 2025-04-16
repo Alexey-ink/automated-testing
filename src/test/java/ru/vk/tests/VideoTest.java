@@ -8,7 +8,7 @@ public class VideoTest extends BaseTest {
     
     @Test
     public void videoTest() {
-        String searchValue = "Как приручить дракона";
+        String searchValue = "How to train your dragon";
 
         VideoPage videoPage = new FeedPage()
                 .videoClick()

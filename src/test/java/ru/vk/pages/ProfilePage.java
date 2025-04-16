@@ -28,10 +28,11 @@ public class ProfilePage extends OkPage {
     private final By deleteRecordENPath = By.xpath(".//*[text()='Delete post']");
 
     public ProfilePage() {
-        checkProfilePage();
+        checkPage();
     }
 
-    public void checkProfilePage() {
+    @Override
+    public void checkPage() {
         settingsPath.shouldBe(visible.because("Settings path is not visible"));
     }
 

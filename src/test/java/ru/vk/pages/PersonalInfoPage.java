@@ -1,5 +1,6 @@
 package ru.vk.pages;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 
 import com.codeborne.selenide.SelenideElement;
@@ -10,7 +11,15 @@ public class PersonalInfoPage extends OkPage {
     private final SelenideElement changeNamePath = $x("//*[@class='text-input-wrapper__v631b']/input");
     private final SelenideElement saveChangesPath = $x("//*[@class= 'footer__nx4nw']/button[1]/span");
     private final SelenideElement updatedNamePath = $x("//span[contains(@class, 'tip__v631b')]");
-    
+
+    PersonalInfoPage() {
+        checkPage();
+    }
+
+    @Override
+    public void checkPage() {
+        mainInfoPath.shouldBe(visible.because("mainInfoPath is not visible"));
+    }
 
     public PersonalInfoPage mainInfoClick() {
         mainInfoPath.click();

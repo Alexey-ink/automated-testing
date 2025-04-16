@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementNotFound;
 
-public class LoginPage{
+public class LoginPage {
 
     private final SelenideElement loginxPath = $x("//*[@id=\"field_email\"]");
     private final SelenideElement passwordxPath = $x("//*[@id=\"field_password\"]");

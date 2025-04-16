@@ -27,6 +27,17 @@ public class VideoPage extends OkPage {
 
     private final SelenideElement slider = $(shadowCss("div[role='slider']", ".shadow-root-container"));
 
+    public VideoPage() {
+        checkPage();
+    }
+
+    @Override
+    public void checkPage() {
+        videoSearchPath.shouldBe(visible.because("videoSearchPath is not visible"));
+        searchButton.shouldBe(visible.because("searchButton is not visible"));
+    }
+
+
     public VideoPage videoSearchClick() {
         this.videoSearchPath.click();
         return this;

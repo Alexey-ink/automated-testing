@@ -11,10 +11,11 @@ public class FeedPage extends OkPage {
     private final SelenideElement hobbiesPath = $x("//*[@data-l='t,to_hobbies']");
 
     public FeedPage() {
-        checkFeedPage();
+        checkPage();
     }
 
-    public void checkFeedPage() {
+    @Override
+    public void checkPage() {
         momentsPath.shouldBe(visible.because("Moments path is not visible"));
         hobbiesPath.shouldBe(visible.because("Hobbies path is not visible"));
     }
