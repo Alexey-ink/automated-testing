@@ -1,8 +1,9 @@
 package ru.vk.pages.components;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import ru.vk.pages.FeedPage;
@@ -10,9 +11,14 @@ import ru.vk.pages.FeedPage;
 public class PostRecord {
     // Posting record xPaths
 
-    public final SelenideElement postRecordPath = $x("//*[@data-l=\"t,feed.posting.ui.input\"]");
-    public final SelenideElement enterTextPath = $x("//div[@role='textbox']");
-    public final SelenideElement shareRecordPath = $x("//button[@data-l='t,button.submit']");
+    private final SelenideElement postRecordPath = $x("//*[@data-l=\"t,feed.posting.ui.input\"]");
+    private final SelenideElement enterTextPath = $x("//div[@role='textbox']");
+    private final SelenideElement shareRecordPath = $x("//button[@data-l='t,button.submit']");
+    private final ElementsCollection visibilityItems = $$x("//button[@data-tsid='ddm-menu-item']");
+    private final SelenideElement attachMusicPath= $x("//div[@data-l='t,button.music']");
+    private final SelenideElement donePath = $x("//button[@data-id='done']");
+
+    private final SelenideElement searchInputPath= $x("//input[@data-id='searchInput']");
 
     public PostRecord() {
         checkPostRecord();
@@ -29,6 +35,17 @@ public class PostRecord {
 
     public PostRecord enterTextClick(String text) {
         enterTextPath.setValue(text);
+        return this;
+    }
+
+    public PostRecord attachSong(String song) {
+        if(song != null) {
+            attachMusicPath.click();
+            searchInputPath.setValue(song).pressEnter();
+            ElementsCollection musicItems = $$x("//div[@data-action='track']");
+            musicItems.first().click();
+            donePath.click();
+        }
         return this;
     }
 

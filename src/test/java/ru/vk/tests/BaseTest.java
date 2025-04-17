@@ -1,21 +1,16 @@
 package ru.vk.tests;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import com.codeborne.selenide.Configuration;
 
-import static com.codeborne.selenide.Selenide.open;
-
+import ru.vk.User;
 import ru.vk.pages.LoginPage;
 
-public abstract class BaseTest {
+import static com.codeborne.selenide.Selenide.*;
 
-    private final String login = "technopol55";
-    private final String password = "technopolisPassword";
+public abstract class BaseTest {
 
     private static final String CHROME_USER_DATA_DIR = "C:/Users/alesh/AppData/Local/Google/Chrome/User Data";
 
@@ -27,16 +22,18 @@ public abstract class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--user-data-dir=" + CHROME_USER_DATA_DIR);
         options.addArguments("--profile-directory=Default");
-        options.addArguments("--start-maximized"); 
+        options.addArguments("--start-maximized");
         Configuration.browserCapabilities = options;
     }
 
     @BeforeEach
     public void authorize() {
+        User user = new User("technopol55", "technopolisPassword");
         open(loginURL);
+        webdriver().driver().getWebDriver().manage().window().maximize();
 
         LoginPage loginPage = new LoginPage();
-        loginPage.authorize(login, password);
+        loginPage.authorize(user.getLogin(), user.getPassword());
     }
     
     @AfterEach

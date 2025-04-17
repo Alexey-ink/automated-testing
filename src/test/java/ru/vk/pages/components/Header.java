@@ -14,6 +14,7 @@ public class Header {
     public final SelenideElement marksPath = $x("//*[@data-l='t,marks']");
     public final SelenideElement videoPath = $x("//*[@data-l='t,video']");
     public final SelenideElement musicPath = $x("//*[@data-l='t,music']");
+    public final SelenideElement searchPath = $x("//input[@data-uikit-old='Input']");
 
     public Header() {
         checkToolbar();

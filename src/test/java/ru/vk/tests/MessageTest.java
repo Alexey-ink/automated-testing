@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+import org.junit.jupiter.api.BeforeEach;
 import com.codeborne.selenide.ex.ElementNotFound;
 import ru.vk.pages.*;
 
@@ -20,7 +20,7 @@ public class MessageTest extends BaseTest {
     //@Disabled
     @Tag("message")
     @DisplayName("Проверка отправки сообщения другу")
-    @ParameterizedTest 
+    @ParameterizedTest
     @ValueSource(strings = {"hello)", "my friend"})
     public void testSendingMessages(String message) {
 

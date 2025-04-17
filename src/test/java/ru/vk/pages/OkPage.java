@@ -14,8 +14,9 @@ public abstract class OkPage {
 
     abstract void checkPage();
 
-    public boolean checkToolNavigationBars() {
-        return header.isDisplayed() && sideBar.isDisplayed();
-    }
+//    public SearchResultPage searchSite(String searchValue) {
+//        header.searchPath.setValue(searchValue).pressEnter();
+//        return new SearchResultPage();
+//    }
 
 }
