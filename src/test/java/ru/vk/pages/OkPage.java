@@ -14,9 +14,9 @@ public abstract class OkPage {
 
     abstract void checkPage();
 
-//    public SearchResultPage searchSite(String searchValue) {
-//        header.searchPath.setValue(searchValue).pressEnter();
-//        return new SearchResultPage();
-//    }
-
+    public PhotoPage photosClick() {
+        sideBar.photosPath.click();
+        PhotoPage photoPage = PhotoPage.checkForPhotos();
+        return photoPage;
+    }
 }

@@ -17,7 +17,7 @@ import ru.vk.pages.*;
 
 public class MessageTest extends BaseTest {
 
-    //@Disabled
+    @Disabled
     @Tag("message")
     @DisplayName("Проверка отправки сообщения другу")
     @ParameterizedTest
