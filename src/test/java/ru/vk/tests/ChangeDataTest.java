@@ -10,7 +10,7 @@ import ru.vk.pages.*;
 
 public class ChangeDataTest extends BaseTest {
 
-    @Disabled
+    //@Disabled
     @Test
     public void testChangeProfileName() throws InterruptedException {
 

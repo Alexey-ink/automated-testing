@@ -1,7 +1,6 @@
 package ru.vk.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.actions;
 
 import org.openqa.selenium.By;
@@ -16,7 +15,7 @@ import com.codeborne.selenide.ElementsCollection;
 
 public class ProfilePage extends OkPage {
 
-    private final SelenideElement settingsPath = $x("//*[contains(@data-l, 'settings')]/a");
+    private final By settingsPath = By.xpath("//*[contains(@data-l, 'settings')]/a");
     private final ElementsCollection postsPath = $$x("//div[@class='feed-w']");
 
     private final String pageLanguage = $("html").attr("lang");
@@ -33,7 +32,7 @@ public class ProfilePage extends OkPage {
 
     @Override
     public void checkPage() {
-        settingsPath.shouldBe(visible.because("Settings path is not visible"));
+        $(settingsPath).shouldBe(visible.because("Settings path is not visible"));
     }
 
     public ProfilePage deletePost() {
@@ -78,7 +77,7 @@ public class ProfilePage extends OkPage {
     }
 
     public SettingsPage settingsClick() {
-        settingsPath.click();
+        $(settingsPath).click();
         return new SettingsPage();
     }
 

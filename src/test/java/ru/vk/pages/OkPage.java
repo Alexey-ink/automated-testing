@@ -15,7 +15,7 @@ public abstract class OkPage {
     abstract void checkPage();
 
     public PhotoPage photosClick() {
-        sideBar.photosPath.click();
+        sideBar.photosPathClick();
         PhotoPage photoPage = PhotoPage.checkForPhotos();
         return photoPage;
     }

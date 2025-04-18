@@ -4,55 +4,52 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 
+import org.openqa.selenium.By;
 import ru.vk.pages.FeedPage;
 
 public class PostRecord {
-    // Posting record xPaths
 
-    private final SelenideElement postRecordPath = $x("//*[@data-l=\"t,feed.posting.ui.input\"]");
-    private final SelenideElement enterTextPath = $x("//div[@role='textbox']");
-    private final SelenideElement shareRecordPath = $x("//button[@data-l='t,button.submit']");
-    private final ElementsCollection visibilityItems = $$x("//button[@data-tsid='ddm-menu-item']");
-    private final SelenideElement attachMusicPath= $x("//div[@data-l='t,button.music']");
-    private final SelenideElement donePath = $x("//button[@data-id='done']");
+    private final By postRecordPath = By.xpath("//*[@data-l=\"t,feed.posting.ui.input\"]");
+    private final By enterTextPath = By.xpath("//div[@role='textbox']");
+    private final By shareRecordPath = By.xpath("//button[@data-l='t,button.submit']");
+    private final By attachMusicPath= By.xpath("//div[@data-l='t,button.music']");
+    private final By donePath = By.xpath("//button[@data-id='done']");
 
-    private final SelenideElement searchInputPath= $x("//input[@data-id='searchInput']");
+    private final By searchInputPath= By.xpath("//input[@data-id='searchInput']");
 
     public PostRecord() {
         checkPostRecord();
     }
 
     public void checkPostRecord() {
-        postRecordPath.shouldBe(visible.because("Post record is not displayed"));
+        $(postRecordPath).shouldBe(visible.because("Post record is not displayed"));
     }
 
     public PostRecord recordClick() {
-        postRecordPath.click();
+        $(postRecordPath).click();
         return this;
     }
 
     public PostRecord enterTextClick(String text) {
-        enterTextPath.setValue(text);
+        $(enterTextPath).setValue(text);
         return this;
     }
 
     public PostRecord attachSong(String song) {
         if(song != null) {
-            attachMusicPath.click();
-            searchInputPath.setValue(song).pressEnter();
+            $(attachMusicPath).click();
+            $(searchInputPath).setValue(song).pressEnter();
             ElementsCollection musicItems = $$x("//div[@data-action='track']");
             musicItems.first().click();
-            donePath.click();
+            $(donePath).click();
         }
         return this;
     }
 
     public FeedPage shareRecordClick() {
-        shareRecordPath.click();
+        $(shareRecordPath).click();
         return new FeedPage();
     }
-
 
 }

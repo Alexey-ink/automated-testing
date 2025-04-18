@@ -3,9 +3,6 @@ package ru.vk.pages;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementNotFound;
 
-import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
-
 import java.time.Duration;
 
 import com.codeborne.selenide.ElementsCollection;
@@ -14,16 +11,17 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.*;
 
 public class MessagesPage {
 
-    private final SelenideElement conversationListPath = $x("//*[@data-tsid='conversation_list']");
+    private final By conversationListPath = By.xpath("//*[@data-tsid='conversation_list']");
 
-    private final SelenideElement chatsSearchInputPath = $x("//*[@data-tsid='chat-search-input']");
-    private final SelenideElement chatSendMessagePath = $x("//*[@data-tsid='write_msg_input-input']");
-    private final SelenideElement chatTitlePath = $x("//*[@data-tsid='chat_main']");
-    private final SelenideElement sendMessageButtonxPath = $x("//*[@data-l='t,sendButton']");
-    private final SelenideElement chatClickPath = $x("//*[@data-tsid='chat']");
+    private final By chatsSearchInputPath = By.xpath("//*[@data-tsid='chat-search-input']");
+    private final By chatSendMessagePath = By.xpath("//*[@data-tsid='write_msg_input-input']");
+    private final By chatTitlePath = By.xpath("//*[@data-tsid='chat_main']");
+    private final By sendMessageButtonxPath = By.xpath("//*[@data-l='t,sendButton']");
+    private final By chatClickPath = By.xpath("//*[@data-tsid='chat']");
 
     private final By waitMsgIconPath = By.xpath(".//*[@class='wait-okmsg']");
 
@@ -32,25 +30,25 @@ public class MessagesPage {
     }
 
     public void checkPage() {
-        conversationListPath.shouldBe(visible.because("Conversation list is not displayed"));
+        $(conversationListPath).shouldBe(visible.because("Conversation list is not displayed"));
     }
 
     public MessagesPage setFriendToSearch(String friendName) {
-        chatsSearchInputPath.setValue(friendName);
+        $(chatsSearchInputPath).setValue(friendName);
         return this;
     }
     public MessagesPage chatClick() {
-        chatClickPath.click();
+        $(chatClickPath).click();
         return this;
     }
 
     public MessagesPage setMessage(String message) {
-        chatSendMessagePath.setValue(message);
+        $(chatSendMessagePath).setValue(message);
         //sleep(8000); // Чтобы выключить интернет перед отправкой соо и проверить, что тест падает
         return this;
     }
     public MessagesPage sendMessage() {
-        sendMessageButtonxPath.click();
+        $(sendMessageButtonxPath).click();
         return this;
     }
 
@@ -85,9 +83,9 @@ public class MessagesPage {
     }
 
     public void verifyChatTitlePath() {
-        chatTitlePath.shouldBe(visible.because("Чат не открылся"));
+        $(chatTitlePath).shouldBe(visible.because("Чат не открылся"));
     }
     public void verifyChatSendMessagePath() {
-        chatSendMessagePath.shouldBe(visible.because("Поле ввода сообщения не отображается"));
+        $(chatSendMessagePath).shouldBe(visible.because("Поле ввода сообщения не отображается"));
     }
 }

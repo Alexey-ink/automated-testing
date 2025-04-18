@@ -1,16 +1,15 @@
 package ru.vk.pages;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$x;
-
-import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Selenide.$;
+import org.openqa.selenium.By;
 
 public class PersonalInfoPage extends OkPage {
 
-    private final SelenideElement mainInfoPath = $x("//button[contains(@class, 'element__vm33b')]");
-    private final SelenideElement changeNamePath = $x("//*[@class='text-input-wrapper__v631b']/input");
-    private final SelenideElement saveChangesPath = $x("//*[@class= 'footer__nx4nw']/button[1]/span");
-    private final SelenideElement updatedNamePath = $x("//span[contains(@class, 'tip__v631b')]");
+    private final By mainInfoPath = By.xpath("//button[contains(@class, 'element__vm33b')]");
+    private final By changeNamePath = By.xpath("//*[@class='text-input-wrapper__v631b']/input");
+    private final By saveChangesPath = By.xpath("//*[@class= 'footer__nx4nw']/button[1]/span");
+    private final By updatedNamePath = By.xpath("//span[contains(@class, 'tip__v631b')]");
 
     PersonalInfoPage() {
         checkPage();
@@ -18,26 +17,26 @@ public class PersonalInfoPage extends OkPage {
 
     @Override
     public void checkPage() {
-        mainInfoPath.shouldBe(visible.because("mainInfoPath is not visible"));
+        $(mainInfoPath).shouldBe(visible.because("mainInfoPath is not visible"));
     }
 
     public PersonalInfoPage mainInfoClick() {
-        mainInfoPath.click();
+        $(mainInfoPath).click();
         return this;
     }
 
     public PersonalInfoPage setNewName(String newName) {
-        changeNamePath.setValue(newName);
+       $(changeNamePath).setValue(newName);
         return this;
     }
 
     public PersonalInfoPage saveChangesClick() {
-        saveChangesPath.click();
+        $(saveChangesPath).click();
         return this;
     }
 
     public String getUpdatedName() {
-        String name = updatedNamePath.getText().split(" ")[0];
+        String name = $(updatedNamePath).getText().split(" ")[0];
         return name;
     }
 }   

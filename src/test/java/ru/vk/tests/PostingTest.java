@@ -25,7 +25,7 @@ public class PostingTest extends BaseTest {
         );
     }
 
-    @Disabled
+    //@Disabled
     @Tag("post")
     @DisplayName("Проверка выкладывания записи на стену и ее удаления")
     @ParameterizedTest

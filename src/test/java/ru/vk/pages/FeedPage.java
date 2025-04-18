@@ -21,22 +21,22 @@ public class FeedPage extends OkPage {
     }
 
     public PostRecord postClick() {
-        this.sideBar.postPath.click();
+        this.sideBar.postPathClick();
         return new PostRecord();
     }
 
     public ProfilePage profileClick() {
-        this.sideBar.profilePath.click();
+        this.sideBar.profilePathClick();
         return new ProfilePage();
     }
 
     public MessagesPage messagesClick() {
-        this.header.messagesPath.click();
+        this.header.clickMessages();
         return new MessagesPage();
     }
 
     public VideoPage videoClick() {
-        this.header.videoPath.click();
+        this.header.clickVideos();
         return new VideoPage();
     }
 

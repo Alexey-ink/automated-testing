@@ -3,6 +3,7 @@ package ru.vk.pages;
 import com.codeborne.selenide.SelenideElement;
 
 import com.codeborne.selenide.ElementsCollection;
+import org.openqa.selenium.By;
 
 import java.time.Duration;
 
@@ -13,12 +14,12 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class VideoPage extends OkPage {
 
-    private final SelenideElement videoSearchPath = $x("//input[@type='search']");
-    private final SelenideElement videoSearchResult = $x("//div[contains(@class, 'video-search-result')]");
-    private final SelenideElement searchButton = $x("//button[contains(@data-l, 'searchCtx')]");
+    private final By videoSearchPath = By.xpath("//input[@type='search']");
+    private final By videoSearchResult = By.xpath("//div[contains(@class, 'video-search-result')]");
+    private final By searchButton = By.xpath("//button[contains(@data-l, 'searchCtx')]");
 
     private final ElementsCollection searchResultsItems = $$x("//div[@data-logger='SimpleLogger']");
-    private final SelenideElement videoPlay = $x("//div[@id='VideoAutoplayPlayerE']");
+    private final By videoPlay = By.xpath("//div[@id='VideoAutoplayPlayerE']");
 
     private final SelenideElement playIcon =
             $(shadowCss("svg[data-testid='play-icon']", ".shadow-root-container"));
@@ -33,37 +34,37 @@ public class VideoPage extends OkPage {
 
     @Override
     public void checkPage() {
-        videoSearchPath.shouldBe(visible.because("videoSearchPath is not visible"));
-        searchButton.shouldBe(visible.because("searchButton is not visible"));
+        $(videoSearchPath).shouldBe(visible.because("videoSearchPath is not visible"));
+        $(searchButton).shouldBe(visible.because("searchButton is not visible"));
     }
 
 
     public VideoPage videoSearchClick() {
-        this.videoSearchPath.click();
+        $(videoSearchPath).click();
         return this;
     }
 
     public VideoPage setSearchValue(String searchValue) {
-        videoSearchPath.setValue(searchValue);
+        $(videoSearchPath).setValue(searchValue);
         sleep(500);
         return this;
     }
 
     public VideoPage searchButtonClick() {
-        this.searchButton.click();
+        $(searchButton).click();
         sleep(5000);
         return this;
     }
 
     public void verifyVideoSearchResult() {
-        this.videoSearchResult.should(appear, Duration.ofSeconds(5));
+        $(videoSearchResult).should(appear, Duration.ofSeconds(5));
     }
 
     public VideoPage firstVideoClick() {
         SelenideElement firstSearchResult = this.searchResultsItems.first();
         firstSearchResult.$x(".//div[@data-module='VideoPreviewAutoplay']").click();
         sleep(5000);
-        this.videoPlay.shouldBe(visible).click();
+        $(videoPlay).shouldBe(visible).click();
         sleep(2000);
         return this;
     }
@@ -98,14 +99,14 @@ public class VideoPage extends OkPage {
     }
 
     public VideoPage videoPlayClick() {
-        this.videoPlay.click();
+        $(videoPlay).click();
         this.pauseIcon.shouldBe(visible);
         sleep(500);
         return this;
     }
 
     public VideoPage videoPauseClick() {
-        this.videoPlay.click();
+        $(videoPlay).click();
         this.playIcon.shouldBe(hidden);
         sleep(1000);
         return this;
