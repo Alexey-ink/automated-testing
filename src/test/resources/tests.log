@@ -1,0 +1,68 @@
+00:35:25.287 [main] INFO  ru.vk.tests.ChangeDataTest - ═══════════════════════════════════════════════════
+00:35:25.288 [main] INFO  ru.vk.tests.ChangeDataTest - Начало теста изменения имени профиля на 'Алексей'
+00:35:29.098 [main] INFO  ru.vk.tests.ChangeDataTest - Имя изменено на 'Алексей'
+00:35:29.961 [main] INFO  ru.vk.tests.ChangeDataTest - ✅ Имя профиля успешно изменено
+00:35:29.962 [main] INFO  ru.vk.tests.ChangeDataTest - ═══════════════════════════════════════════════════
+
+00:35:36.198 [main] INFO  ru.vk.tests.MessageTest - ═══════════════════════════════════════════════════
+00:35:36.198 [main] INFO  ru.vk.tests.MessageTest - Начало теста отправки сообщения: 'hello)'
+00:35:36.199 [main] INFO  ru.vk.tests.MessageTest - Получатель: про100 Игорь
+00:35:38.306 [main] INFO  ru.vk.tests.MessageTest - Верификация элементов чата
+00:35:38.613 [main] INFO  ru.vk.tests.MessageTest - Отправка сообщения
+00:35:38.945 [main] INFO  ru.vk.tests.MessageTest - Сообщение 'hello)' отправлено
+00:35:38.946 [main] INFO  ru.vk.tests.MessageTest - Ожидание иконки ожидания отправки
+00:35:41.419 [main] INFO  ru.vk.tests.MessageTest - Иконка не появилась -- сообщение отправилось
+00:35:41.419 [main] INFO  ru.vk.tests.MessageTest - Ожидание исчезновения иконки
+00:35:41.537 [main] INFO  ru.vk.tests.MessageTest - ✅ Сообщение 'hello)' успешно доставлено и проверено
+00:35:41.537 [main] INFO  ru.vk.tests.MessageTest - ═══════════════════════════════════════════════════
+
+00:35:47.879 [main] INFO  ru.vk.tests.MessageTest - ═══════════════════════════════════════════════════
+00:35:47.879 [main] INFO  ru.vk.tests.MessageTest - Начало теста отправки сообщения: 'my friend'
+00:35:47.879 [main] INFO  ru.vk.tests.MessageTest - Получатель: про100 Игорь
+00:35:49.269 [main] INFO  ru.vk.tests.MessageTest - Верификация элементов чата
+00:35:49.531 [main] INFO  ru.vk.tests.MessageTest - Отправка сообщения
+00:35:49.865 [main] INFO  ru.vk.tests.MessageTest - Сообщение 'my friend' отправлено
+00:35:49.866 [main] INFO  ru.vk.tests.MessageTest - Ожидание иконки ожидания отправки
+00:35:52.320 [main] INFO  ru.vk.tests.MessageTest - Иконка не появилась -- сообщение отправилось
+00:35:52.320 [main] INFO  ru.vk.tests.MessageTest - Ожидание исчезновения иконки
+00:35:52.489 [main] INFO  ru.vk.tests.MessageTest - ✅ Сообщение 'my friend' успешно доставлено и проверено
+00:35:52.489 [main] INFO  ru.vk.tests.MessageTest - ═══════════════════════════════════════════════════
+
+00:35:59.734 [main] INFO  ru.vk.tests.PhotoTest - ═══════════════════════════════════════════════════
+00:35:59.734 [main] INFO  ru.vk.tests.PhotoTest - Начало теста загрузки фотографии
+00:36:03.096 [main] INFO  ru.vk.tests.PhotoTest - Фотография загружена
+00:36:03.952 [main] INFO  ru.vk.tests.PhotoTest - ✅ Тест успешно завершен. Новое количество фотографий: 18
+00:36:03.952 [main] INFO  ru.vk.tests.PhotoTest - ═══════════════════════════════════════════════════
+
+00:36:11.498 [main] INFO  ru.vk.tests.PostingTest - ═══════════════════════════════════════════════════
+00:36:11.498 [main] INFO  ru.vk.tests.PostingTest - Начало теста публикации поста: Testing the posting of a record
+00:36:14.596 [main] INFO  ru.vk.tests.PostingTest - Пост опубликован
+00:36:17.020 [main] INFO  ru.vk.tests.PostingTest - Проверка наличия поста
+00:36:19.573 [main] INFO  ru.vk.tests.PostingTest - ✅ Пост успешно удален
+00:36:19.573 [main] INFO  ru.vk.tests.PostingTest - ═══════════════════════════════════════════════════
+
+00:36:30.775 [main] INFO  ru.vk.tests.PostingTest - ═══════════════════════════════════════════════════
+00:36:30.777 [main] INFO  ru.vk.tests.PostingTest - Начало теста публикации поста: Пост с музычкой
+00:36:34.706 [main] INFO  ru.vk.tests.PostingTest - Пост опубликован
+00:36:36.800 [main] INFO  ru.vk.tests.PostingTest - Проверка наличия поста
+00:36:39.303 [main] INFO  ru.vk.tests.PostingTest - ✅ Пост успешно удален
+00:36:39.303 [main] INFO  ru.vk.tests.PostingTest - ═══════════════════════════════════════════════════
+
+00:36:45.403 [main] INFO  ru.vk.tests.VideoTest - ═══════════════════════════════════════════════════
+00:36:45.403 [main] INFO  ru.vk.tests.VideoTest - Запуск теста для видео: 'How to train your dragon'
+00:36:48.684 [main] INFO  ru.vk.tests.VideoTest - Выполнен поиск видео и открыто первое видео в результах
+00:36:50.539 [main] INFO  ru.vk.tests.VideoTest - Позиция слайдера после сброса: 0%
+00:36:53.012 [main] INFO  ru.vk.tests.VideoTest - Позиция слайдера после перемещения: 30%
+00:36:53.345 [main] INFO  ru.vk.tests.VideoTest - Видео успешно воспроизводится и ставится на паузу
+00:36:53.345 [main] INFO  ru.vk.tests.VideoTest - ✅ Тест успешно завершен для видео: 'How to train your dragon'
+00:36:53.345 [main] INFO  ru.vk.tests.VideoTest - ═══════════════════════════════════════════════════
+
+00:36:59.104 [main] INFO  ru.vk.tests.VideoTest - ═══════════════════════════════════════════════════
+00:36:59.104 [main] INFO  ru.vk.tests.VideoTest - Запуск теста для видео: 'Холодное сердце 2013'
+00:37:02.748 [main] INFO  ru.vk.tests.VideoTest - Выполнен поиск видео и открыто первое видео в результах
+00:37:04.818 [main] INFO  ru.vk.tests.VideoTest - Позиция слайдера после сброса: 0%
+00:37:07.308 [main] INFO  ru.vk.tests.VideoTest - Позиция слайдера после перемещения: 30%
+00:37:07.617 [main] INFO  ru.vk.tests.VideoTest - Видео успешно воспроизводится и ставится на паузу
+00:37:07.617 [main] INFO  ru.vk.tests.VideoTest - ✅ Тест успешно завершен для видео: 'Холодное сердце 2013'
+00:37:07.618 [main] INFO  ru.vk.tests.VideoTest - ═══════════════════════════════════════════════════
+

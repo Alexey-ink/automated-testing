@@ -13,10 +13,14 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ru.vk.pages.*;
 
 public class PostingTest extends BaseTest {
+
+    private static final Logger log = LoggerFactory.getLogger(PostingTest.class);
 
     static Stream<Arguments> postDataProvider() {
         return Stream.of(
@@ -32,12 +36,16 @@ public class PostingTest extends BaseTest {
     @MethodSource("postDataProvider")
     public void testPostingRecord(String postText, String song) {
 
+        log.info("═══════════════════════════════════════════════════");
+        log.info("Начало теста публикации поста: {}", postText);
+
         FeedPage feedPage = new FeedPage().postClick()
                 .recordClick()
                 .enterTextClick(postText)
                 .attachSong(song)
                 .shareRecordClick();
 
+        log.info("Пост опубликован");
         ProfilePage profilePage = feedPage.profileClick();
 
         LocalDateTime now = LocalDateTime.now();
@@ -46,7 +54,7 @@ public class PostingTest extends BaseTest {
         String timePlus1 = now.plusMinutes(1).format(formatter);
 
         refresh();
-
+        log.info("Проверка наличия поста");
         assertAll(
             () -> profilePage.verifyPostIsPublished(postText),
             () -> profilePage.verifyTimePublishedPost(currentTime, timePlus1)
@@ -55,6 +63,8 @@ public class PostingTest extends BaseTest {
         ProfilePage newProfilePage = profilePage.deletePost();
         refresh();
         newProfilePage.verifyPostIsDeleted(postText, currentTime, timePlus1);
+        log.info("✅ Пост успешно удален");
+        log.info("═══════════════════════════════════════════════════\n");
 
     }
 }

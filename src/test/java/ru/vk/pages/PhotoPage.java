@@ -32,7 +32,7 @@ public interface PhotoPage {
     default PhotoPageWithPhotos uploadPhoto() throws InterruptedException {
         File file = new File("src/test/resources/cat.jpg");
         $(uploadPhotoPath).$(fileInputPath).uploadFile(file);
-        sleep(100); // без sleep post-запрос похоже не успевает обработаться,
+        sleep(1000); // без sleep post-запрос похоже не успевает обработаться,
                                 // тк после аплоада фотки делаем сразу refresh (в PhotoTest)
         return new PhotoPageWithPhotos();
     }
