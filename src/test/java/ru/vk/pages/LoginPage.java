@@ -1,5 +1,6 @@
 package ru.vk.pages;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.ex.ElementNotFound;
 import org.openqa.selenium.By;
@@ -15,9 +16,9 @@ public class LoginPage {
         try {
             return new FeedPage();
         }  catch (ElementNotFound e) {
-            $(loginxPath).setValue(login);
-            $(passwordxPath).setValue(password);
-            $(authorizeButton).click();
+            $(loginxPath).shouldBe(visible).setValue(login);
+            $(passwordxPath).shouldBe(visible).setValue(password);
+            $(authorizeButton).shouldBe(visible).click();
     
             try {
                 return new FeedPage(); 

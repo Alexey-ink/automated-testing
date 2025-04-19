@@ -1,5 +1,6 @@
 package ru.vk.tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.vk.pages.FeedPage;
 import ru.vk.pages.PhotoPage;
@@ -11,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PhotoTest extends BaseTest {
 
     @Test
+    @Tag("photo")
     public void testUploadPhoto() throws InterruptedException {
 
         PhotoPage photoPage = new FeedPage().photosClick();

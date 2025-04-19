@@ -7,11 +7,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import org.junit.jupiter.api.BeforeEach;
 import com.codeborne.selenide.ex.ElementNotFound;
 import ru.vk.pages.*;
 

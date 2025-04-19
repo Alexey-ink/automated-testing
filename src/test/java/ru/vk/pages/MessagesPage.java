@@ -34,21 +34,21 @@ public class MessagesPage {
     }
 
     public MessagesPage setFriendToSearch(String friendName) {
-        $(chatsSearchInputPath).setValue(friendName);
+        $(chatsSearchInputPath).shouldBe(visible).setValue(friendName);
         return this;
     }
     public MessagesPage chatClick() {
-        $(chatClickPath).click();
+        $(chatClickPath).shouldBe(visible.because("chatClickPath is not visible")).click();
         return this;
     }
 
     public MessagesPage setMessage(String message) {
-        $(chatSendMessagePath).setValue(message);
+        $(chatSendMessagePath).shouldBe(visible).setValue(message);
         //sleep(8000); // Чтобы выключить интернет перед отправкой соо и проверить, что тест падает
         return this;
     }
     public MessagesPage sendMessage() {
-        $(sendMessageButtonxPath).click();
+        $(sendMessageButtonxPath).shouldBe(visible).click();
         return this;
     }
 
@@ -73,13 +73,14 @@ public class MessagesPage {
                 .$x(
                 ".//*[contains(@aria-label, '" + currentTime + "') or " +
                 "contains(@aria-label, '" + timePlus1 + "')]"
-                ).shouldBe(visible, Duration.ofMillis(3001));
+                ).shouldBe(visible.because("Не найдено сообщение " + message + " с нужным временем"),
+                        Duration.ofMillis(3001));
     }
 
     public void waitIconShouldNotVisible(String message) {
         SelenideElement lastMessage = this.getLastMessage(message);
         SelenideElement messageWaitIcon = lastMessage.parent().parent().$(waitMsgIconPath);
-        messageWaitIcon.shouldNotBe(visible);
+        messageWaitIcon.shouldNotBe(visible.because("Иконка ожидания сообщения не исчезла"));
     }
 
     public void verifyChatTitlePath() {

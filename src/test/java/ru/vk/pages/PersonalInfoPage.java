@@ -21,22 +21,22 @@ public class PersonalInfoPage extends OkPage {
     }
 
     public PersonalInfoPage mainInfoClick() {
-        $(mainInfoPath).click();
+        $(mainInfoPath).shouldBe(visible).click();
         return this;
     }
 
     public PersonalInfoPage setNewName(String newName) {
-       $(changeNamePath).setValue(newName);
+       $(changeNamePath).shouldBe(visible).setValue(newName);
         return this;
     }
 
     public PersonalInfoPage saveChangesClick() {
-        $(saveChangesPath).click();
+        $(saveChangesPath).shouldBe(visible).click();
         return this;
     }
 
     public String getUpdatedName() {
-        String name = $(updatedNamePath).getText().split(" ")[0];
+        String name = $(updatedNamePath).shouldBe(visible).getText().split(" ")[0];
         return name;
     }
 }   

@@ -18,7 +18,7 @@ public class SettingsPage extends OkPage {
     }
 
     public PersonalInfoPage personalInfoClick() {
-        $(personalInfoPath).click();
+        $(personalInfoPath).shouldBe(visible).click();
         return new PersonalInfoPage();
     }
 }

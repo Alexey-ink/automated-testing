@@ -9,11 +9,12 @@ import org.openqa.selenium.By;
 import ru.vk.pages.FeedPage;
 
 public class PostRecord {
+    private final By root = By.xpath("//div[@class='mlr_cnts']");
 
     private final By postRecordPath = By.xpath("//*[@data-l=\"t,feed.posting.ui.input\"]");
-    private final By enterTextPath = By.xpath("//div[@role='textbox']");
-    private final By shareRecordPath = By.xpath("//button[@data-l='t,button.submit']");
-    private final By attachMusicPath= By.xpath("//div[@data-l='t,button.music']");
+    private final By enterTextPath = By.xpath(".//div[@role='textbox']");
+    private final By shareRecordPath = By.xpath(".//button[@data-l='t,button.submit']");
+    private final By attachMusicPath= By.xpath(".//div[@data-l='t,button.music']");
     private final By donePath = By.xpath("//button[@data-id='done']");
 
     private final By searchInputPath= By.xpath("//input[@data-id='searchInput']");
@@ -27,18 +28,18 @@ public class PostRecord {
     }
 
     public PostRecord recordClick() {
-        $(postRecordPath).click();
+        $(postRecordPath).shouldBe(visible).click();
         return this;
     }
 
     public PostRecord enterTextClick(String text) {
-        $(enterTextPath).setValue(text);
+        $(root).$(enterTextPath).shouldBe(visible).setValue(text);
         return this;
     }
 
     public PostRecord attachSong(String song) {
         if(song != null) {
-            $(attachMusicPath).click();
+            $(root).$(attachMusicPath).click();
             $(searchInputPath).setValue(song).pressEnter();
             ElementsCollection musicItems = $$x("//div[@data-action='track']");
             musicItems.first().click();
@@ -48,7 +49,7 @@ public class PostRecord {
     }
 
     public FeedPage shareRecordClick() {
-        $(shareRecordPath).click();
+        $(root).$(shareRecordPath).shouldBe(visible).click();
         return new FeedPage();
     }
 

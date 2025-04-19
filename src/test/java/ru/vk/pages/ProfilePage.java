@@ -26,6 +26,9 @@ public class ProfilePage extends OkPage {
     private final By deleteRecordRUPath = By.xpath(".//*[text()='Удалить заметку']");
     private final By deleteRecordENPath = By.xpath(".//*[text()='Delete post']");
 
+    private static final String TIME_XPATH_TEMPLATE = ".//time[text()='%s' or text()='%s']";
+    private static final String MESSAGE_TIME_XPATH_TEMPLATE = ".//*[contains(text(), '%s') and .//time[text()='%s' or text()='%s']]";
+
     public ProfilePage() {
         checkPage();
     }
@@ -45,24 +48,28 @@ public class ProfilePage extends OkPage {
         actions().moveToElement(lastPost.$(feedAction)).perform();
         
         if(this.pageLanguage.equals(RU)) {
-            lastPost.$(deleteRecordRUPath).click();
+            lastPost.$(deleteRecordRUPath).shouldBe(visible).click();
         }
         else if(this.pageLanguage.equals(EN)) {
-            lastPost.$(deleteRecordENPath).click();
+            lastPost.$(deleteRecordENPath).shouldBe(visible).click();
         }
         else {
             throw new IllegalStateException("Неизвестный язык страницы: " + this.pageLanguage);
         }
 
-        lastPost.$(deleteConfirm).click();
+        lastPost.$(deleteConfirm).shouldBe(visible).click();
         return new ProfilePage();
     }
 
     public void verifyPostIsDeleted(String text, String currentTime, String timePlus1) {
         SelenideElement lastPost = this.postsPath.first();
-
-        lastPost.$x(".//*[contains(text(), '" + text + "') and .//time[text()='" + currentTime + "' or text()='" + timePlus1 + "']]")
-        .shouldNot(exist);
+        String fullXpath = String.format(
+                MESSAGE_TIME_XPATH_TEMPLATE,
+                text,
+                currentTime,
+                timePlus1
+        );
+        lastPost.$x(fullXpath).shouldNot(exist);
     }
 
 
@@ -73,11 +80,12 @@ public class ProfilePage extends OkPage {
 
     public void verifyTimePublishedPost(String currentTime, String timePlus1) {
         SelenideElement lastPost = this.postsPath.first();
-        lastPost.$x(".//time[text()='" + currentTime + "' or text()='" + timePlus1 + "']").shouldBe(visible);
+        String timeXpath = String.format(TIME_XPATH_TEMPLATE, currentTime, timePlus1);
+        lastPost.$x(timeXpath).shouldBe(visible);
     }
 
     public SettingsPage settingsClick() {
-        $(settingsPath).click();
+        $(settingsPath).shouldBe(visible).click();
         return new SettingsPage();
     }
 
