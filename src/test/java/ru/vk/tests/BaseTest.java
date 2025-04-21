@@ -20,7 +20,7 @@ public abstract class BaseTest {
         // Configuration.browser = "chrome";
         // Configuration.headless = false;
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--user-data-dir=" + CHROME_USER_DATA_DIR);
+        // options.addArguments("--user-data-dir=" + CHROME_USER_DATA_DIR);
         options.addArguments("--profile-directory=Default");
         options.addArguments("--start-maximized");
         Configuration.browserCapabilities = options;

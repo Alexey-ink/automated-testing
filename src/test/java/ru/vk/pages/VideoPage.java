@@ -27,6 +27,7 @@ public class VideoPage extends OkPage {
     private final SelenideElement pauseIcon =
             $(shadowCss("svg[data-testid='pause-icon']", ".shadow-root-container"));
 
+    private final By loadingSpinner = By.xpath("//clipPath[contains(@id, 'ico_spinner')]");
     private final SelenideElement slider = $(shadowCss("div[role='slider']", ".shadow-root-container"));
 
     private final SelenideElement sliderHandle =
@@ -50,13 +51,13 @@ public class VideoPage extends OkPage {
 
     public VideoPage setSearchValue(String searchValue) {
         $(videoSearchPath).shouldBe(visible).setValue(searchValue);
-        $(searchButton).shouldBe(visible);
         return this;
     }
 
     public VideoPage searchButtonClick() {
         $(searchButton).shouldBe(visible).click();
-        $(videoSearchResult).shouldBe(visible, Duration.ofSeconds(5));
+        $(loadingSpinner).should(disappear, Duration.ofSeconds(10));
+        $(videoSearchResult).shouldBe(visible, Duration.ofSeconds(10));
         return this;
     }
 
@@ -70,11 +71,6 @@ public class VideoPage extends OkPage {
         $(videoPlay).shouldBe(visible, Duration.ofSeconds(5)).click();
         playIcon.shouldBe(exist, Duration.ofSeconds(10)); // почему-то по умолчанию скрыта
         // и при воспроизведении, и при паузе, поэтому вместо visible exist
-        return this;
-    }
-
-    public VideoPage verifySlider() {
-        this.slider.shouldBe(visible);
         return this;
     }
 
@@ -112,20 +108,21 @@ public class VideoPage extends OkPage {
                 .click()
                 .perform();
 
-        // Ждем, пока видео прогрузится, иначе клик по иконке не сработает
-        sleep(2000);
         return this;
     }
 
     public VideoPage videoPlayClick() {
-        $(videoPlay).click();
+        $(videoPlay).shouldBe(exist, Duration.ofSeconds(5)).click();
+        // Забавно, но что бы у нас не стояло: pause или play -- и pauseIcon и playIcon всегда будут hidden в DOM :)
         this.pauseIcon.shouldBe(exist, Duration.ofSeconds(5));
+        this.playIcon.shouldNotBe(visible, Duration.ofSeconds(5));
         return this;
     }
 
     public VideoPage videoPauseClick() {
-        $(videoPlay).click();
-        this.playIcon.shouldBe(hidden, Duration.ofSeconds(5));
+        $(videoPlay).shouldBe(exist, Duration.ofSeconds(5)).click();
+        this.playIcon.shouldBe(exist, Duration.ofSeconds(5));
+        this.pauseIcon.shouldNotBe(visible, Duration.ofSeconds(5));
         return this;
     }
 }

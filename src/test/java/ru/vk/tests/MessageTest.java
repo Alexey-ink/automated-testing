@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 public class MessageTest extends BaseTest {
     private static final Logger log = LoggerFactory.getLogger(MessageTest.class);
-    private static final String FRIEND_NAME = "про100 Игорь";
+    private static final String FRIEND_NAME = "Алексей Шихалев";
 
     //@Disabled
     @Tag("message")
